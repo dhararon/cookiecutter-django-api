@@ -128,6 +128,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # Django Admin URL.
 ADMIN_URL = 'admin/'
+APPEND_SLASH = True
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
@@ -135,3 +136,23 @@ ADMINS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
+
+# REST_FRAMEWORK CONFIGURATION
+# ------------------------------------------------------------------------------
+# http://www.django-rest-framework.org/api-guide/authentication/
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        '{{ cookiecutter.project_slug }}.core.authentications.CustomTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        '{{ cookiecutter.project_slug }}.core.renderers.CustomJSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+    'DEFAULT_PAGINATION_CLASS': '{{ cookiecutter.project_slug }}.core.pagination.CustomPagination',
+    'EXCEPTION_HANDLER': '{{ cookiecutter.project_slug }}.core.utils.custom_exception_handler'
+}

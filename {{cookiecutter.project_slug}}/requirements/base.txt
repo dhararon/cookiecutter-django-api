@@ -4,6 +4,7 @@ Pillow==5.1.0
 argon2-cffi==18.1.0
 redis>=2.10.5  # https://github.com/antirez/redis
 celery==3.1.25  # pyup: <4.0  # https://github.com/celery/celery
+Delorean==1.0.0
 
 # Django
 # ------------------------------------------------------------------------------
