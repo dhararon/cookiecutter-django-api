@@ -4,8 +4,8 @@
 {{cookiecutter.description}}
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
-     :target: https://github.com/pydanny/cookiecutter-django-api/
-     :alt: Built with Cookiecutter Django
+     :target: https://github.com/dhararon/cookiecutter-django-api
+     :alt: Built with Cookiecutter Django API
 
 Settings
 --------
