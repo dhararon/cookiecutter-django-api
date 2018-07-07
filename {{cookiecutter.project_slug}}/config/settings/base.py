@@ -153,6 +153,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     ),
-    'DEFAULT_PAGINATION_CLASS': '{{ cookiecutter.project_slug }}.core.pagination.CustomPagination',
+    'DEFAULT_PAGINATION_CLASS': '{{ cookiecutter.project_slug }}.core.paginations.CustomPagination',
     'EXCEPTION_HANDLER': '{{ cookiecutter.project_slug }}.core.utils.custom_exception_handler'
 }
