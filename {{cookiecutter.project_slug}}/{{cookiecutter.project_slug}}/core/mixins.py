@@ -5,13 +5,13 @@ from rest_framework.response import Response
 
 
 class BaseModelMixin(object):
-    def get_response_data(self, data, *args, **kwargs):
+    def get_response_data(self, serializer, *args, **kwargs):
         """
             Get the data to return as response data
             By default it returns `serializer.data`
             Override this method to return custom response data
         """
-        return data
+        return serializer.data
 
 
 class CreateModelMixin(BaseModelMixin, mixins.CreateModelMixin):
@@ -23,7 +23,7 @@ class CreateModelMixin(BaseModelMixin, mixins.CreateModelMixin):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
 
-        response_data = self.get_response_data(serializer.data)
+        response_data = self.get_response_data(serializer)
         return Response(
             response_data, status=status.HTTP_201_CREATED)
 
@@ -46,5 +46,5 @@ class UpdateModelMixin(BaseModelMixin, mixins.UpdateModelMixin):
             # forcibly invalidate the prefetch cache on the instance.
             instance._prefetched_objects_cache = {}
 
-        response_data = self.get_response_data(serializer.data)
+        response_data = self.get_response_data(serializer)
         return Response(response_data)
