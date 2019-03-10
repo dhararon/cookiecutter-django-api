@@ -1,5 +1,3 @@
-# coding: utf8
-
 from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import authentication
@@ -20,4 +18,4 @@ class CustomTokenAuthentication(authentication.TokenAuthentication):
             raise exceptions.AuthenticationFailed(
                 _('User inactive or deleted.'), code=101)
 
-        return (token.user, token)
+        return token.user, token

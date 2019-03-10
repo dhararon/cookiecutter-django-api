@@ -1,4 +1,3 @@
-# coding: utf8
 import json
 from rest_framework.renderers import JSONRenderer
 
@@ -13,12 +12,19 @@ class CustomJSONRenderer(JSONRenderer):
         results = json.loads(
             response.decode('utf-8'))
 
+        if 'body' in results:
+            data = json.dumps(results)
+            return data.encode('utf-8')
+
         if type(results) is dict:
             results = [results]
 
-        data = {
-            "errors": [],
-            "body": {
+        errors = []
+        body = {}
+        if renderer_context['response'].status_code >= 400:
+            errors = results
+        else:
+            body = {
                 'links': {
                     'next': None,
                     'previous': None
@@ -26,6 +32,11 @@ class CustomJSONRenderer(JSONRenderer):
                 'count': len(results),
                 "results": results
             }
+
+        data = {
+            "errors": errors,
+            "body": body
         }
         data = json.dumps(data)
+
         return data.encode('utf-8')
