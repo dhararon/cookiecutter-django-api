@@ -39,5 +39,8 @@ def custom_exception_handler(exc, context):
                 }
                 error_list.append(error)
 
-        response.data = error_list
+        response.data = {
+            "body": {},
+            "errors": error_list
+        }
     return response
