@@ -40,7 +40,10 @@ USE_TZ = True
 DATABASES = {
     'default': env.db('DATABASE_URL', default='postgres://'),
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
+DATABASE_ROUTERS = []
+
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -55,7 +58,6 @@ DJANGO_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
@@ -142,17 +144,17 @@ MANAGERS = ADMINS
 # http://www.django-rest-framework.org/api-guide/authentication/
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        '{{ cookiecutter.project_slug }}.core.authentications.CustomTokenAuthentication',
+        'core.authentications.CustomTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_RENDERER_CLASSES': (
-        '{{ cookiecutter.project_slug }}.core.renderers.CustomJSONRenderer',
+        'core.renderers.CustomJSONRenderer',
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     ),
-    'DEFAULT_PAGINATION_CLASS': '{{ cookiecutter.project_slug }}.core.paginations.CustomPagination',
-    'EXCEPTION_HANDLER': '{{ cookiecutter.project_slug }}.core.utils.custom_exception_handler'
+    'DEFAULT_PAGINATION_CLASS': 'core.paginations.CustomPagination',
+    'EXCEPTION_HANDLER': 'core.handlers.custom_exception_handler'
 }
