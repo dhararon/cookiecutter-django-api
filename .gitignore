@@ -228,3 +228,4 @@ pip-selfcheck.json
 .idea/
 
 .pytest_cache/
+!/{{cookiecutter.project_slug}}/compose/local/
