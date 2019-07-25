@@ -1,0 +1,25 @@
+version: '3.2'
+
+networks:
+  default:
+    external:
+      name: {{cookiecutter.project_slug}}
+
+services:
+
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    image: {{cookiecutter.project_slug}}:local
+    command: python manage.py runserver 0.0.0.0:9000
+    volumes:
+      - ./src:/app
+    env_file:
+      - envs/local/django
+      - envs/local/database
+    ports:
+      - "9000:9000"
+    networks:
+      - default
