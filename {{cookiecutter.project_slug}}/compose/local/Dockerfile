@@ -1,6 +1,6 @@
 FROM python:3.7
 
-MAINTAINER "Dharwin Perez <dharwin@urbvan.com>"
+MAINTAINER "Dharwin Perez <dhararon@gmail.com>"
 
 # Copy requirements files
 COPY ./src/pyproject.toml /tmp/pyproject.toml
